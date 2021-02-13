@@ -4,13 +4,13 @@
         $account=$_POST["account"];       
         $password =md5($_POST["password"]); 
         $name =$_POST["name"];
-        $add =$_POST["add"];
+        //$add =$_POST["add"];
 
         $phone = $_POST["phonenumber"];
-            
+            //設定cookie
             setcookie("account", "$account", time()+3600);
             setcookie("name", "$name", time()+3600);
-            setcookie("add", "$add", time()+3600);
+            //setcookie("add", "$add", time()+3600);
             setcookie("phonenumber", "$phone", time()+3600);
         
             $checkcode = $_POST["typecode"];
@@ -40,7 +40,7 @@
 
             $sql_insert = "INSERT INTO user (user_account, user_email, user_password, user_name, user_phone, user_postcode, user_add, role_id)
                                      VALUES ('$account','$email','$password', '$name', '$phone', '$postcode', '$add', '$role')";
-            mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
+            //mysqli_set_charset($conn, "utf8");  //讓mysql顯示中文而不是亂碼
             $result = $conn->query($sql_insert) or die('MySQL insert error');
             //mysqli_close($conn); //關閉資料庫連結
             
