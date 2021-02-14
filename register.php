@@ -29,9 +29,6 @@ $add="";
 
 <body>
 
- <?php 
-include("menu.php");
-?>
 
   <!-- Page Content -->
   <div class="container">
@@ -56,7 +53,7 @@ include("menu.php");
 
 ?>
 <div class="col-lg-12 text-center">
-	<form name="reg_form" action="regist_insert.php" method="post" onsubmit="return allCheck();" >
+	<form name="reg_form" action="register_insert.php" method="post" onsubmit="return allCheck();" >
 						註冊<br>
 						<label>帳號</label>
 						<input type="text" name="account" id="account" placeholder="帳號至少5個英文字母或數字" style="width:15em" onblur="checkRepAccount()" 
