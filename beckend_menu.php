@@ -14,8 +14,8 @@
             <a class="nav-link" href="">互轉管理</a>
           </li>
 	        <li class="nav-item">
-            <a class="nav-link" href="">會員註冊</a>
+            <a class="nav-link" href="">登入</a>
            </li>
 	        <li class="nav-item">
-            <a class="nav-link" href=""></a>
+            <a class="nav-link" href="">登出</a>
           </li>
