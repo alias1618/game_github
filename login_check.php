@@ -76,7 +76,7 @@ if (($username != "") && ($password != "")) {
         }else if($session_id == $db_session_id){    //有登入過而且同樣的session_id
             $sql_update_01 = "UPDATE login_data SET login_session='$session_id', login_time='$time', member_id='$member_id'";
             $sql_update_result_01 = $conn->query($sql_update_01) or die('MySQL update error');
-        //重複登入 導回首頁
+        //重複登入 session 與資料庫不同而且登入的時間小於20分鐘 將導回首頁
         }else if(($session_id != $db_session_id) && (($time - $db_login_time) < 1200)){ 
             echo "<script>login_two();</script>";
             return;
@@ -89,17 +89,10 @@ if (($username != "") && ($password != "")) {
         }
 
         $_SESSION['member_id'] = $row['member_id'];
-        //$_SESSION['role_id'] = $row['role_id'];
+        
         $_SESSION['user_name'] = $row['user_name'];
         header("Location: index.php");
-        // if ($_SESSION['role_id'] == 1){
 
-        //     header("Location: management.php");
-        // }else if ($_SESSION['role_id'] == 2){
-        //     header("Location: index.php");
-
-        // }
-        //echo 127;
     }
     }else {
 
