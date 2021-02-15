@@ -8,7 +8,7 @@
     <a class="nav-link" href="add_wallet.php">加值</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href="">提領</a>
+    <a class="nav-link" href="withdraw.php">提領</a>
     </li>
     <li class="nav-item">
     <a class="nav-link" href="">互轉</a>

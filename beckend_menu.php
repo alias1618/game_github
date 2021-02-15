@@ -8,7 +8,7 @@
             <a class="nav-link" href="backend_add_wallet.php">加值管理</a>
           </li>
 	        <li class="nav-item">
-            <a class="nav-link" href="">提領管理</a>
+            <a class="nav-link" href="backend_withdraw.php">提領管理</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="">互轉管理</a>
