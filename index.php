@@ -11,6 +11,7 @@ session_start();
 </head>
 <body>
     <?php
+    include("show_account.php");
     include("front_menu.php");
     ?>
 </body>

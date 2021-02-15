@@ -13,9 +13,3 @@
     <li class="nav-item">
     <a class="nav-link" href="">互轉</a>
     </li>
-    <li class="nav-item">
-    <a class="nav-link" href="">登入</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="">登出</a>
-    </li>
