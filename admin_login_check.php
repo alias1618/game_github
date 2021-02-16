@@ -52,7 +52,7 @@ if (($account != "") && ($password != "")) {
     if (mysqli_num_rows($result) > 0){
         $row = mysqli_fetch_array($result);
 
-        $_SESSION["manager_account"] =  $row["manager_account"];
+        $_SESSION["manager_account"] = $row["manager_account"];
         header("Location: backend.php");
     }else{
         echo "帳號或密碼錯誤<br>";
