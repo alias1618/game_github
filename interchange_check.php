@@ -6,14 +6,38 @@
 		}
     function notenuogh(){
         alert('互轉金額大於帳戶金額');
-		window.location.href='index.php';
+		window.location.href='interchange.php';
     }
+    function no_out_number(){
+        alert('需要填寫轉出金額');
+		window.location.href='interchange.php';
+    }    
+    function no_Interchange_in(){
+        alert('需要填寫轉入帳號');
+		window.location.href='interchange.php';
+    }    
+    function no_account(){
+        alert('沒有這個轉入帳號');
+		window.location.href='interchange.php';
+    } 
 </script>
 <?php
     session_start();
-    echo '$Interchange_out_number'.$Interchange_out_number = $_POST['out_number']; //轉出金額
-    echo 'Interchange_in_account'.$Interchange_in_account = $_POST['Interchange_in'];//轉入帳號
-    echo '$Interchange_out_account'.$Interchange_out_account = $_POST['account_name'];//轉出帳號
+    if($_POST['out_number'] != "" ){
+        $Interchange_out_number = $_POST['out_number']; //轉出金額
+    }else{
+        echo "<script>no_out_number();</script>"; 
+    }
+    if($_POST['Interchange_in'] != "" ){
+        $Interchange_in_account = $_POST['Interchange_in'];//轉入帳號
+    }else{
+        echo "<script>no_Interchange_in();</script>"; 
+    }
+
+    $Interchange_out_account = $_POST['account_name'];//轉出帳號
+
+    
+    
 
     //找出轉出帳號中的帳戶金額
     require_once("connect_db.php");
@@ -23,11 +47,18 @@
     $out_member_wallet = $row["member_wallet"];
 
     //找出轉入帳號中的帳戶金額
-    $sql = "SELECT	member_wallet FROM member WHERE member_account = $Interchange_in_account";
-    $result = $conn->query($sql) or die("MySQL query error");
+    $sql = "SELECT	* FROM member WHERE member_account = $Interchange_in_account";
+    $result_01 = $conn->query($sql) or die("MySQL query error");
     $row = mysqli_fetch_array($result);
     $in_member_wallet = $row["member_wallet"];
+    $in_member_account = $row["member_account"];
 
+    if (empty($in_member_account)) {
+        echo "<script>no_account();</script>";
+        return;   
+    } else {
+        echo "錯誤: " . $sql_insert . "<br>" . $conn->error;
+    }
 
     //判斷轉出的金額有沒有大於轉出帳號的帳戶金額
     if($Interchange_out_number > $out_member_wallet) {
@@ -42,9 +73,9 @@
         $sql_insert = "INSERT INTO interchange (interchange_out_account, interchange_in_account, interchange_out_number, interchange_out_number_finish, interchange_in_number_finish) 
                     VALUES ('$Interchange_out_account', '$Interchange_in_account', '$Interchange_out_number', '$Interchange_out_number_finish', '$Interchange_in_number_finish')";
         
-        $result = $conn->query($sql_insert) or die('MySQL insert error');
+        $result_02 = $conn->query($sql_insert) or die('MySQL insert error');
         //執行上面那段SQL語法
-        if ($result) {
+        if ($result_02) {
             echo "<script>pass();</script>";   
         } else {
             echo "錯誤: " . $sql_insert . "<br>" . $conn->error;
@@ -57,7 +88,7 @@
         $sql_update_02 = "UPDATE member SET member_wallet='$Interchange_in_number_finish' WHERE member_account = $Interchange_in_account";
         $sql_update_result_02 = $conn->query($sql_update_02) or die('MySQL update error 02');    
         
-        header("Location: index.php");
+        //header("Location: index.php");
 
     }
 ?>
