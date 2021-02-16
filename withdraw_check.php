@@ -14,7 +14,6 @@
     
     $withdraw_number = $_POST['withdraw_number'];
     $bank_name = $_POST['bank_name']; 
-     
     $member_account = $_SESSION['member_account'];
 
     require_once("connect_db.php");

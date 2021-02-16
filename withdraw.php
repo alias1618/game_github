@@ -13,6 +13,7 @@
 <body>
 <?php
     include("show_account.php");
+    
     ?>
 
     <form action="withdraw_check.php" method="post">
