@@ -29,12 +29,12 @@
 			$result01 = $conn->query($sql_query01) or die("MySQL query error");
 			while($row01 = mysqli_fetch_array($result01)){
 			    $interchange_id = $row01["interchange_id"];
-			    $Interchange_out_account = $row01["Interchange_out_account"];
-			    $Interchange_in_account = $row01["Interchange_in_account"];
-                $Interchange_out_number = $row01["Interchange_out_number"];	
-                $Interchange_out_number_finish = $row01["Interchange_out_number_finish"];
-			    $Interchange_in_number_finish = $row01["Interchange_in_number_finish"];
-			    $Interchange_date = $row01["Interchange_date"];
+			    $Interchange_out_account = $row01["interchange_out_account"];
+			    $Interchange_in_account = $row01["interchange_in_account"];
+                $Interchange_out_number = $row01["interchange_out_number"];	
+                $Interchange_out_number_finish = $row01["interchange_out_number_finish"];
+			    $Interchange_in_number_finish = $row01["interchange_in_number_finish"];
+			    $Interchange_date = $row01["interchange_date"];
 			    
 			    
             ?>
@@ -48,14 +48,8 @@
                 <td><?php echo $Interchange_date;?></td>	<!-- 互轉時間 -->
                 
                
-                <?php
-                if ($withdraw_done != 'yes'){
-                ?>
-                <td><a href="backend_withdraw_check.php?withdraw_id=<?php echo $withdraw_id;?>">提領</a></td>
-				<input type="hidden" id="withdraw_id" name="withdraw_id" value="<?php echo $withdraw_id;?>">	</td>
             <?php } ?>
             </tr>
-            <?php }?>
 		</table>
 </body>
 </html>

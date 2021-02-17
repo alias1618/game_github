@@ -2,6 +2,9 @@
     <a class="nav-link" href="index.php">首頁</a>
     </li>
     <li class="nav-item">
+    <a class="nav-link" href="">比賽列表</a>
+    </li>
+    <li class="nav-item">
     <a class="nav-link" href="">下單清單</a>
     </li>
     <li class="nav-item">
