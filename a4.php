@@ -7,48 +7,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <title></title>
-    <style>
-        table {
-            width: 500px;
-            margin: 0px auto;
-        }
-
-        table,
-        td{
-            vertical-align: middle;
-            text-align: center;
-        }
-        th {
-            border: 0px double #025173;
-        }
-
-        th {
-            background-color: #015063;
-            color: white;
-            width: auto;
-        }
-    </style>
 </head>
 
 <body>
-
-<input type="button" id="all" value="All">
-<input type="button" id="load" value="load">
-<div id="result">
 <table >
-
         <tr>
             <th>比賽日期</th>
             <th>比賽聯盟</th>
             <th colspan="3">比賽隊伍名稱</th>
             <th>詳細資料</th>
         </tr>
-        
 			<?php
+            
+            $from = (string)(date('Y-m-d', strtotime("now"))."<br>");;
+            $to = (string)(date('Y-m-d', strtotime("+2 day"))."<br>");
+
             require_once("connect_db.php");
-			$sql_query01 = "SELECT * FROM gamelist";
+            //$sql_query01 = "SELECT * FROM gamelist WHERE gamelist_date between '2021-02-20' AND '2021-02-22'";
+			$sql_query01 ="SELECT * FROM gamelist  WHERE gamelist_date BETWEEN '$from' AND '$to'";
 			
 			$result01 = $conn->query($sql_query01) or die("MySQL query error");
 			while($row01 = mysqli_fetch_array($result01)){
@@ -72,46 +49,12 @@
                  <!-- <?php
                 //if ($withdraw_done != 'yes'){
                 ?> -->
-                <td><a href="gamelist_detail.php?gamelist_id= <?php echo $gamelist_id;?>">詳細資料</a></td>
+                <td><a href="backend_withdraw_check.php?gamelist_id=<?php echo $gamelist_id;?>">詳細資料</a></td>
 				<input type="hidden" id="gamelist_id" name="gamelist_id" value="<?php //echo $withdraw_id;?>">	</td>
             <?php //} ?> 
             </tr>
             <?php }?>
 		</table>
-        </div>
-
-<script> 
-    $(function(){
-        $("#all").click(function(res) {
-        $.ajax({
-          type: "get",
-          url: "gamelist.php",
-          dataType: "html",
-          data: {},
-          success: function(data) {
-            window.location.reload()
-            },
-          error: function(xhr) {
-            alert(xhr.status);
-            }     
-          });
-        });
-      $("#load").click(function() {
-        $.ajax({
-          type: "get",
-          url: "gamelist_ajax.php",
-          dataType: "html",
-          data: {},
-          success: function(data) {
-            $("#result").html(data);
-            },
-          error: function(xhr) {
-            alert(xhr.status);
-            }     
-          });
-        });
-      });
-  </script>
 </body>
 
 </html>

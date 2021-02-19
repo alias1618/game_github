@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <title></title>
     <style>
         table {
             width: 500px;
@@ -30,15 +29,14 @@
             width: auto;
         }
     </style>
+    <title></title>
 </head>
 
 <body>
-
 <input type="button" id="all" value="All">
 <input type="button" id="load" value="load">
-<div id="result">
+<div id="result">This is a div container
 <table >
-
         <tr>
             <th>比賽日期</th>
             <th>比賽聯盟</th>
@@ -72,15 +70,19 @@
                  <!-- <?php
                 //if ($withdraw_done != 'yes'){
                 ?> -->
-                <td><a href="gamelist_detail.php?gamelist_id= <?php echo $gamelist_id;?>">詳細資料</a></td>
+                <td><a href="backend_withdraw_check.php?gamelist_id=<?php echo $gamelist_id;?>">詳細資料</a></td>
 				<input type="hidden" id="gamelist_id" name="gamelist_id" value="<?php //echo $withdraw_id;?>">	</td>
             <?php //} ?> 
             </tr>
             <?php }?>
 		</table>
-        </div>
 
-<script> 
+
+</div>
+
+
+
+  <script> 
     $(function(){
         $("#all").click(function(res) {
         $.ajax({
@@ -89,7 +91,7 @@
           dataType: "html",
           data: {},
           success: function(data) {
-            window.location.reload()
+            $("#result").html(data);
             },
           error: function(xhr) {
             alert(xhr.status);
@@ -99,7 +101,7 @@
       $("#load").click(function() {
         $.ajax({
           type: "get",
-          url: "gamelist_ajax.php",
+          url: "a4.php",
           dataType: "html",
           data: {},
           success: function(data) {
