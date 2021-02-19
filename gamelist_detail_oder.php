@@ -35,8 +35,6 @@
     <?php 
        echo $gamelist_id = $_GET['gamelist_id'];
        echo "<br>";
-       //echo $profit_id = $_GET['profit_id'];
-       //echo $boda_id = $_GET['boda_id'];
        echo 'i'.$i = $_GET['i'];
        echo 'j'.$j = $_GET['j'];
        echo "<br>";
@@ -54,7 +52,7 @@
 
        echo $boda = $row01["boda_".$i."_".$j];
     ?>
-
+<div id="result">
     <form action="">
         <table>
             <tr>
@@ -63,24 +61,27 @@
                 <th>預估獲利</th>
             </tr>
             <tr>
-                <td><input type="number" name="" id="" ></td>
-                <td><input type="number" name="" id="" value="<?php echo $row01["profit_".$i."_".$j];?>" readonly></td>
-                <td><input type="number"></td>
+                <td><input type="number" name="number" id="number" ></td>
+                <td><input type="button" name="profit" id="profit" value="<?php echo $row01["profit_".$i."_".$j];?>" ></td>
+                <td><input type="number" id="money" value=""></td>
             </tr>  
         </table>  
     </form>
-    
+</div>    
 </body>
 <script> 
     $(function(){
-      $("#load").click(function() {
+      $("#profit").click(function() {
         $.ajax({
-          type: "get",
-          url: "gamelist_ajax.php",
-          dataType: "html",
-          data: {},
-          success: function(data) {
-            $("#result").html(data);
+          type: "POST",
+          url: "gamelist_detail_oder_check.php",
+          dataType: "text",
+          data: {
+            profit:$('#profit').val,
+          },
+          success: function(msg) {
+              alert(msg);
+            //$("#result").html(data);
             },
           error: function(xhr) {
             alert(xhr.status);
