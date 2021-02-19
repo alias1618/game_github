@@ -43,35 +43,32 @@
         
 			<?php
             require_once("connect_db.php");
-			$sql_query01 = "SELECT * FROM boda WHERE gamelist_id = $gamelist_id";
+			//$sql_query01 = "SELECT * FROM boda WHERE gamelist_id = $gamelist_id";
+
+            $sql_query01 ="SELECT *
+                            FROM boda
+                            INNER JOIN profit 
+                            ON boda.gamelist_id=profit.gamelist_id";
 			
 			$result01 = $conn->query($sql_query01) or die("MySQL query error");
 			$row01 = mysqli_fetch_array($result01);
 
-            $sql_query02 = "SELECT * FROM profit WHERE gamelist_id = $gamelist_id";    
-            $result02 = $conn->query($sql_query02) or die("MySQL query error");
-            $row02 = mysqli_fetch_array($result02);
+            //$sql_query02 = "SELECT * FROM profit WHERE gamelist_id = $gamelist_id";    
+            //$result02 = $conn->query($sql_query02) or die("MySQL query error");
+            //$row02 = mysqli_fetch_array($result02);
 
             for($i=0;$i<4;$i++){
                 for($j=0;$j<4;$j++){?>
                 <tr>
                 <td><?php echo $i."-".$j;?></td>
-                <td><?php echo $row02["profit_".$i."_".$j];?></td>
+                <td><?php echo $row01["profit_".$i."_".$j];?></td>
 
                 <td><?php echo $row01["boda_".$i."_".$j];?></td>
-                <td><a href="gamelist_detail.php?gamelist_id= <?php echo $gamelist_id;?> &profit_id= <?php echo $profit_id;?> &boda_id= <?php echo $boda_id;?>">詳細資料</a></td>
+                <td><a href="gamelist_detail_oder.php?gamelist_id=<?php echo $gamelist_id;?>&i=<?php echo $i;?>&j=<?php echo $j;?>">詳細資料</a></td>
                 </tr>
             <?php    }
             }
             ?>
-			
-
-                 <!-- <?php
-                //if ($withdraw_done != 'yes'){
-                ?> -->
-                <td><a href="gamelist_detail.php?gamelist_id= <?php echo $gamelist_id;?>">詳細資料</a></td>
-				<input type="hidden" id="gamelist_id" name="gamelist_id" value="<?php //echo $withdraw_id;?>">	</td>
-            <?php //} ?> 
             </tr>
             <?php ?>
 		</table>

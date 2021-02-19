@@ -72,7 +72,7 @@
                  <!-- <?php
                 //if ($withdraw_done != 'yes'){
                 ?> -->
-                <td><a href="gamelist_detail.php?gamelist_id= <?php echo $gamelist_id;?>">詳細資料</a></td>
+                <td><a href="gamelist_detail.php?gamelist_id=<?php echo $gamelist_id;?>">詳細資料</a></td>
 				<input type="hidden" id="gamelist_id" name="gamelist_id" value="<?php //echo $withdraw_id;?>">	</td>
             <?php //} ?> 
             </tr>
